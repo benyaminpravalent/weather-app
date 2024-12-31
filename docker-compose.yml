@@ -25,6 +25,8 @@ services:
       JWT_PUBLIC_KEY_BASE64: ${JWT_PUBLIC_KEY_BASE64}
       JWT_PRIVATE_KEY_BASE64: ${JWT_PRIVATE_KEY_BASE64}
       DEFAULT_ADMIN_USER_PASSWORD: ${DEFAULT_ADMIN_USER_PASSWORD}
+      REDIS_HOST: redis
+      REDIS_PORT: ${REDIS_PORT}
       REDIS_PASS: ${REDIS_PASS}
     depends_on:
       - pgsqldb
@@ -54,7 +56,7 @@ services:
     ports:
       - "6379:6379"
     environment:
-      - REDIS_PASSWORD=password
+      REDIS_PASSWORD: "${REDIS_PASS}"
 
 volumes:
   node_modules:

@@ -1,4 +1,4 @@
-import { RedisModule, RedisModuleOptions } from '@liaoliaots/nestjs-redis'; // Import RedisModule
+import { RedisModule, RedisModuleOptions } from '@liaoliaots/nestjs-redis';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
@@ -31,18 +31,21 @@ import { AppLoggerModule } from './logger/logger.module';
     RedisModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService): Promise<RedisModuleOptions> => ({
-        closeClient: true,
-        config: {
-          host: configService.get<string>('redis.host'),
-          port: configService.get<number>('redis.port'),
-          password: configService.get<string>('redis.password'),
-        },
-      }),
-    }), // Add Redis module
+      useFactory: (...args: unknown[]): RedisModuleOptions => {
+        const configService = args[0] as ConfigService;
+        return {
+          closeClient: true,
+          config: {
+            host: configService.get<string>('REDIS_HOST'),
+            port: configService.get<number>('REDIS_PORT'),
+            password: configService.get<string>('REDIS_PASSWORD'),
+          },
+        };
+      },
+    }),
     AppLoggerModule,
   ],
-  exports: [AppLoggerModule, ConfigModule, RedisModule], // Export RedisModule
+  exports: [AppLoggerModule, ConfigModule, RedisModule],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     {
