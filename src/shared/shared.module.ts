@@ -1,3 +1,4 @@
+import { RedisModule, RedisModuleOptions } from '@liaoliaots/nestjs-redis'; // Import RedisModule
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
@@ -22,19 +23,28 @@ import { AppLoggerModule } from './logger/logger.module';
         username: configService.get<string>('database.user'),
         password: configService.get<string>('database.pass'),
         entities: [__dirname + '/../**/entities/*.entity{.ts,.js}'],
-        // Timezone configured on the Postgres server.
-        // This is used to typecast server date/time values to JavaScript Date object and vice versa.
         timezone: 'Z',
         synchronize: false,
         debug: configService.get<string>('env') === 'development',
       }),
     }),
+    RedisModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService): Promise<RedisModuleOptions> => ({
+        closeClient: true,
+        config: {
+          host: configService.get<string>('redis.host'),
+          port: configService.get<number>('redis.port'),
+          password: configService.get<string>('redis.password'),
+        },
+      }),
+    }), // Add Redis module
     AppLoggerModule,
   ],
-  exports: [AppLoggerModule, ConfigModule],
+  exports: [AppLoggerModule, ConfigModule, RedisModule], // Export RedisModule
   providers: [
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
-
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
