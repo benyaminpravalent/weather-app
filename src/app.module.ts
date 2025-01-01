@@ -2,6 +2,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ScheduleModule } from '@nestjs/schedule'; // Import ScheduleModule
 import { ThrottlerModule } from '@nestjs/throttler';
 
 import { AppController } from './app.controller';
@@ -31,6 +32,7 @@ import { WeatherModule } from './weather/weather.module';
         res,
       }),
     }),
+    ScheduleModule.forRoot(),
     SharedModule,
     UserModule,
     AuthModule,

@@ -5,8 +5,7 @@ export class RequestContext {
 
   public url: string;
 
-  public ip: string | undefined;
+  public ip?: string | undefined;
 
-  // TODO : Discuss with team if this import is acceptable or if we should move UserAccessTokenClaims to shared.
   public user: UserAccessTokenClaims | null;
 }

@@ -28,6 +28,8 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: ${REDIS_PORT}
       REDIS_PASS: ${REDIS_PASS}
+      OPENWEATHERMAP_API_KEY: ${OPENWEATHERMAP_API_KEY}
+      OPENWEATHERMAP_URL: ${OPENWEATHERMAP_URL}
     depends_on:
       - pgsqldb
       - redis

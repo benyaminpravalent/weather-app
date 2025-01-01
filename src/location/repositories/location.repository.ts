@@ -33,4 +33,14 @@ export class LocationRepository extends Repository<Location> {
       throw new NotFoundException(`Location with ID ${id} not found`);
     }
   }
+
+  /**
+   * Get all distinct cities from the locations table.
+   */
+  async getAllDistinctCities(): Promise<string[]> {
+    const result = await this.createQueryBuilder('location')
+      .select('DISTINCT location.cityName', 'cityName')
+      .getRawMany();
+    return result.map((row) => row.cityName);
+  }
 }
