@@ -1,5 +1,6 @@
 import {
   CallHandler,
+  ContextType,
   ExecutionContext,
   Injectable,
   NestInterceptor,
@@ -17,19 +18,35 @@ export class LoggingInterceptor implements NestInterceptor {
   }
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const request = context.switchToHttp().getRequest();
-    const method = request.method;
-    const ctx = createRequestContext(request);
+    const isGraphQL = context.getType() === ('graphql' as ContextType);
+
+    // Extract request and response objects based on the context type
+    const req = isGraphQL
+      ? context.getArgByIndex(2)?.req // GraphQL context
+      : context.switchToHttp().getRequest(); // REST context
+
+    const res = isGraphQL
+      ? context.getArgByIndex(2)?.res // GraphQL context
+      : context.switchToHttp().getResponse(); // REST context
+
+    const method = req?.method || 'GraphQL';
+    const url = req?.url || 'GraphQL operation';
+
+    const ctx = createRequestContext(req);
 
     const now = Date.now();
     return next.handle().pipe(
       tap(() => {
-        const response = context.switchToHttp().getResponse();
-        const statusCode = response.statusCode;
+        const statusCode = res?.statusCode || 200; // Default to 200 for GraphQL
 
         const responseTime = Date.now() - now;
 
-        const resData = { method, statusCode, responseTime };
+        const resData = {
+          method,
+          url,
+          statusCode,
+          responseTime,
+        };
 
         this.appLogger.log(ctx, 'Request completed', { resData });
       }),

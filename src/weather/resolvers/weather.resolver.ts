@@ -1,9 +1,8 @@
-import { UseGuards } from '@nestjs/common';
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Query, Resolver } from '@nestjs/graphql';
 
-import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { AppLogger } from '../../shared/logger/logger.service';
-// import { RequestContext } from '../../shared/request-context/request-context.dto';
+import { RequestContext } from '../../shared/request-context/request-context.dto';
+import { createRequestContext } from '../../shared/request-context/util';
 import { CurrentWeatherResponse } from '../dtos/current-weather.dto';
 import { WeatherForecastResponse } from '../dtos/weather-forecast.dto';
 import { WeatherService } from '../services/weather.service';
@@ -13,7 +12,6 @@ import { WeatherService } from '../services/weather.service';
  * Provides GraphQL queries to get current weather and forecast data.
  */
 @Resolver()
-@UseGuards(JwtAuthGuard) // Require JWT authentication for all queries in this resolver
 export class WeatherResolver {
   constructor(
     private readonly weatherService: WeatherService,
@@ -24,40 +22,45 @@ export class WeatherResolver {
 
   /**
    * Get current weather for a given city.
-   * Requires authentication via JWT.
    *
    * @param ctx Request context containing user info and request metadata.
    * @param cityName Name of the city to retrieve weather data for.
    * @returns Current weather data for the specified city.
    */
-  @Query(() => CurrentWeatherResponse) // Replace `String` with your actual GraphQL return type
+  @Query(() => CurrentWeatherResponse)
   async getCurrentWeather(
+    @Context() context: any,
     @Args('cityName') cityName: string,
   ): Promise<CurrentWeatherResponse> {
-    // this.logger.log(
-    //   ctx,
-    //   `getCurrentWeather query was called with cityName: ${cityName}`,
-    // );
-    return this.weatherService.getWeather(cityName);
+    const req = context.req;
+    const ctx: RequestContext = createRequestContext(req);
+
+    this.logger.log(
+      ctx,
+      `getCurrentWeather query was called with cityName: ${cityName}`,
+    );
+    return this.weatherService.getWeather(ctx, cityName);
   }
 
   /**
    * Get weather forecast for a given city.
-   * Requires authentication via JWT.
    *
    * @param ctx Request context containing user info and request metadata.
    * @param cityName Name of the city to retrieve weather forecast for.
    * @returns Weather forecast data for the specified city.
    */
-  @Query(() => WeatherForecastResponse) // Replace `String` with your actual GraphQL return type
+  @Query(() => WeatherForecastResponse)
   async getWeatherForecast(
-    // @Context('ctx') ctx: RequestContext,
+    @Context() context: any,
     @Args('cityName') cityName: string,
   ): Promise<WeatherForecastResponse> {
-    // this.logger.log(
-    //   ctx,
-    //   `getWeatherForecast query was called with cityName: ${cityName}`,
-    // );
-    return this.weatherService.getForecast(cityName);
+    const req = context.req;
+    const ctx: RequestContext = createRequestContext(req);
+
+    this.logger.log(
+      ctx,
+      `getWeatherForecast query was called with cityName: ${cityName}`,
+    );
+    return this.weatherService.getForecast(ctx, cityName);
   }
 }

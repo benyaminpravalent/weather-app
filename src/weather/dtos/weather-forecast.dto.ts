@@ -71,8 +71,8 @@ export class ForecastItem {
   @Field(() => Wind)
   wind: Wind;
 
-  @Field(() => Int)
-  visibility: number;
+  @Field(() => Int, { nullable: true })
+  visibility?: number;
 
   @Field(() => Float)
   pop: number;
@@ -85,6 +85,15 @@ export class ForecastItem {
 }
 
 @ObjectType()
+export class Coord {
+  @Field(() => Float)
+  lat: number;
+
+  @Field(() => Float)
+  lon: number;
+}
+
+@ObjectType()
 export class City {
   @Field(() => Int)
   id: number;
@@ -92,11 +101,8 @@ export class City {
   @Field(() => String)
   name: string;
 
-  @Field(() => Float)
-  lat: number;
-
-  @Field(() => Float)
-  lon: number;
+  @Field(() => Coord)
+  coord: Coord;
 
   @Field(() => String)
   country: string;
@@ -116,8 +122,8 @@ export class City {
 
 @ObjectType()
 export class WeatherForecastResponse {
-  @Field(() => String)
-  cod: string;
+  @Field(() => String, { nullable: true })
+  cod?: string;
 
   @Field(() => Int)
   message: number;
