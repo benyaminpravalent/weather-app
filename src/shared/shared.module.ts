@@ -1,4 +1,5 @@
 import { RedisModule, RedisModuleOptions } from '@liaoliaots/nestjs-redis';
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
@@ -6,12 +7,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { configModuleOptions } from './configs/module-options';
 import { AllExceptionsFilter } from './filters/all-exceptions.filter';
+import { OpenWeatherMapService } from './http-requests/open-weather-map.service';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { AppLoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(configModuleOptions),
+    HttpModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -45,13 +48,14 @@ import { AppLoggerModule } from './logger/logger.module';
     }),
     AppLoggerModule,
   ],
-  exports: [AppLoggerModule, ConfigModule, RedisModule],
   providers: [
+    OpenWeatherMapService,
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
     },
   ],
+  exports: [AppLoggerModule, ConfigModule, RedisModule, OpenWeatherMapService],
 })
 export class SharedModule {}

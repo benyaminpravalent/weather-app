@@ -17,7 +17,7 @@ async function bootstrap() {
 
   /** Swagger configuration*/
   const options = new DocumentBuilder()
-    .setTitle('Nestjs API starter')
+    .setTitle('Nestjs Weather API')
     .setDescription('Nestjs API description')
     .setVersion('1.0')
     .addBearerAuth()

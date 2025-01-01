@@ -1,6 +1,8 @@
+import { RedisService } from '@liaoliaots/nestjs-redis';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { compare, hash } from 'bcrypt';
 import { plainToClass } from 'class-transformer';
+import { Redis } from 'ioredis';
 
 import { AppLogger } from '../../shared/logger/logger.service';
 import { RequestContext } from '../../shared/request-context/request-context.dto';
@@ -12,11 +14,14 @@ import { UserRepository } from '../repositories/user.repository';
 
 @Injectable()
 export class UserService {
+  private readonly redis: Redis;
   constructor(
     private repository: UserRepository,
     private readonly logger: AppLogger,
+    private readonly redisService: RedisService,
   ) {
     this.logger.setContext(UserService.name);
+    this.redis = this.redisService.getOrThrow();
   }
   async createUser(
     ctx: RequestContext,
@@ -92,6 +97,8 @@ export class UserService {
 
     this.logger.log(ctx, `calling ${UserRepository.name}.getById`);
     const user = await this.repository.getById(id);
+
+    await this.redis.set(`${id}`, JSON.stringify(user));
 
     return plainToClass(UserOutput, user, {
       excludeExtraneousValues: true,
