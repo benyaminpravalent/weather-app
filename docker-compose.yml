@@ -45,13 +45,6 @@ services:
     volumes:
       - pgsqldata:/var/lib/postgresql/data
 
-  adminer:
-    image: adminer
-    ports:
-      - 8080:8080
-    depends_on:
-      - pgsqldb
-
   redis:
     image: redis:latest
     container_name: redis
