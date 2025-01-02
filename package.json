@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "description": "NestJS Weather REST API Repository",
-  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
