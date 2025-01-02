@@ -2,7 +2,7 @@
 
 We use `middleware` to access/modify request and response objects. Middleware functions get executed before the router handler gets executed. More about `middleware` can be found [here in nestjs documentation](https://docs.nestjs.com/middleware).
 
-This starter repository comes with the following middlewares:-
+This repository comes with the following middlewares:-
 
 - [Request-ID middleware](#request-ID-middleware)
 - [Logger middleware](#logger-middleware)

@@ -1,6 +1,6 @@
 ## Access Control List (ACL)
 
-This starter repository comes with a basic implementation of the ACL service. Conceptually each module will have its own ACL service extending the base implementation.
+This repository comes with a basic implementation of the ACL service. Conceptually each module will have its own ACL service extending the base implementation.
 
 For example, an article module should have an `ArticleAclService` service to control access on the `Article` entity.
 
