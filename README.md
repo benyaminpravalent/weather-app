@@ -184,7 +184,7 @@ $ docker build -t my-app .
 $ docker run -p 3000:3000 --volume 'pwd':/usr/src/app --env-file .env my-app
 
 # run using docker-compose
-$ docker compose up
+$ docker compose up --build
 ```
 
 ---
