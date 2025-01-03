@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "576fa2f1-a7ff-4732-b9e1-2b0c8e92fefb",
+		"name": "weather-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11777987"
+	},
+	"item": [
+		{
+			"name": "open-weather-map",
+			"item": [
+				{
+					"name": "Get Weather",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q=medan&appid=your-api-key",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "medan"
+								},
+								{
+									"key": "appid",
+									"value": "your-api-key"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Forecast",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "api.openweathermap.org/data/2.5/forecast?q=bali&appid=your-api-key",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"forecast"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "bali"
+								},
+								{
+									"key": "appid",
+									"value": "your-api-key"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"username\": \"test\",\n    \"password\": \"test123\",\n    \"email\": \"test@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test\",\n    \"password\": \"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTczNTg0Nzc0NiwiZXhwIjoxNzM1ODU0OTQ2fQ.F7OypIlzyNaUalMIVjIdFjhI76aIWq5sobWwOki9IC6Duvo0IUh584mP2prhC6SCoif-a1TGUmJyklcMJCcwNpYqu3Zbn6I1q9nuyfTpYYGCwtzA_wzROe9tEH1WX3zRfrCDSXvUNBygcCYEvhE-xAcvFTkelTfZilY6uTjhWYK4ASq4FOtDtyhU7M0PFdXvI9r-502nC0n5lyc1JkaGCzKD48RkGdKyVIG8oRSFokbFnr822FjQMfwH-Yh4S4__GAaMI5VR-2hcHkyDmQ8T1iH-ctLHPyd-LupTM1AS6OCW5Y7CXqHMm-wlGTAnqYYIPhURUVmRi-wjOiPBjizomA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/refresh-token",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "location",
+			"item": [
+				{
+					"name": "Add Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODQ3NzQ2LCJleHAiOjE3MzU4NTEzNDZ9.ZQcetW6vvAgcCvzJJbktFPktR1XQMwrA6UozrqlDB-y-lusmhpgonqouhULVJLWTpoDp0DUkuZBGd60QEfqy9_68SmRuD1aHmplcluV7prXiZ6457e2lXZiohcz9vuQ29IlnBMykzyMJStDksY5JX2r4qU0eiELZEu_Vqd8uD09IHBJHOhWWtiCfMtWfPgSmT3n8HsjCQJyPQQ4_chv3H_NjxDeep0n11ftT8uH5aUY_xal3g8g_z1kA0V7vUoHr7xFkNTrT_KcmLrzJngjKRuGj3nDmpv8gLbUtBlVkuiwXD4sRvle_NkCXLNM16WuKCd_m6O3dHCejmVvbLTWVmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cityName\": \"bali\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/locations",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Locations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODQ3NzQ2LCJleHAiOjE3MzU4NTEzNDZ9.ZQcetW6vvAgcCvzJJbktFPktR1XQMwrA6UozrqlDB-y-lusmhpgonqouhULVJLWTpoDp0DUkuZBGd60QEfqy9_68SmRuD1aHmplcluV7prXiZ6457e2lXZiohcz9vuQ29IlnBMykzyMJStDksY5JX2r4qU0eiELZEu_Vqd8uD09IHBJHOhWWtiCfMtWfPgSmT3n8HsjCQJyPQQ4_chv3H_NjxDeep0n11ftT8uH5aUY_xal3g8g_z1kA0V7vUoHr7xFkNTrT_KcmLrzJngjKRuGj3nDmpv8gLbUtBlVkuiwXD4sRvle_NkCXLNM16WuKCd_m6O3dHCejmVvbLTWVmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/locations",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Location By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODQ3NzQ2LCJleHAiOjE3MzU4NTEzNDZ9.ZQcetW6vvAgcCvzJJbktFPktR1XQMwrA6UozrqlDB-y-lusmhpgonqouhULVJLWTpoDp0DUkuZBGd60QEfqy9_68SmRuD1aHmplcluV7prXiZ6457e2lXZiohcz9vuQ29IlnBMykzyMJStDksY5JX2r4qU0eiELZEu_Vqd8uD09IHBJHOhWWtiCfMtWfPgSmT3n8HsjCQJyPQQ4_chv3H_NjxDeep0n11ftT8uH5aUY_xal3g8g_z1kA0V7vUoHr7xFkNTrT_KcmLrzJngjKRuGj3nDmpv8gLbUtBlVkuiwXD4sRvle_NkCXLNM16WuKCd_m6O3dHCejmVvbLTWVmg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/locations/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Get My Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NzY4ODEwLCJleHAiOjE3MzU3NzI0MTB9.EsmOTDI-Y6E2cMKA8k44n1N-XalmZ--x25GsHXRCxs9la2bmwUajNEWHR1q5hxUo2GOPsMRJO8Zm3n-LsrdDxu-O8IN8pdegpDKMZg49ocErOwnA-UwH1KUiA9AFiuuFitZidcxuWRT3Ji4DgM4UavMnBckzJ417clwSNxexTis3Nqq4_x4Qq9g1-lePUQSVftfSEkXb62pMxod28-OH-w_KfiJFKvIyehCtyqjssLyTmI4ktq5LRbVCJmLiwC3EUh84KG2NK4qX_tirQPFfMZzk6MC6mUxZQ64f7NpLJQGj-CIefTlTQtphtlZ9cgA9vxw7m1ApB9Qu4OuBz1IWQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODQ5NTY5LCJleHAiOjE3MzU4NTMxNjl9.eXDzl-LPlB6-FCRiXzqOP6mzalN4ro5aM8DatHPGk6XeMPBei0gaimkMb29Q_WhSbNR-ZqIiBl7qik8M5FtCblVn63D34QivH199A0sIggmMCimYJHYPnou7KGQ5mqSQHuTvTr_CHvvXsIi-YDKqG_vdhRLnaxl_lmYG8TZ0Z-99hE2u6BIsFQV5i5WkdhwLmX6hwFwTK_CvxNpVpaa8h5v8PE5v9Zp8xf17-CB1cvYCIXfPcniuLma3bG_2EsentYL0HxUW7242NgmcDuoh5M-cVqk96Ndr-VL9dyJAqgbPMXHjX5KQwjHR_axBCm25qdMdfm8uxLy4q1ZMd7qPsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODQ5NTY5LCJleHAiOjE3MzU4NTMxNjl9.eXDzl-LPlB6-FCRiXzqOP6mzalN4ro5aM8DatHPGk6XeMPBei0gaimkMb29Q_WhSbNR-ZqIiBl7qik8M5FtCblVn63D34QivH199A0sIggmMCimYJHYPnou7KGQ5mqSQHuTvTr_CHvvXsIi-YDKqG_vdhRLnaxl_lmYG8TZ0Z-99hE2u6BIsFQV5i5WkdhwLmX6hwFwTK_CvxNpVpaa8h5v8PE5v9Zp8xf17-CB1cvYCIXfPcniuLma3bG_2EsentYL0HxUW7242NgmcDuoh5M-cVqk96Ndr-VL9dyJAqgbPMXHjX5KQwjHR_axBCm25qdMdfm8uxLy4q1ZMd7qPsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODQ5NTY5LCJleHAiOjE3MzU4NTMxNjl9.eXDzl-LPlB6-FCRiXzqOP6mzalN4ro5aM8DatHPGk6XeMPBei0gaimkMb29Q_WhSbNR-ZqIiBl7qik8M5FtCblVn63D34QivH199A0sIggmMCimYJHYPnou7KGQ5mqSQHuTvTr_CHvvXsIi-YDKqG_vdhRLnaxl_lmYG8TZ0Z-99hE2u6BIsFQV5i5WkdhwLmX6hwFwTK_CvxNpVpaa8h5v8PE5v9Zp8xf17-CB1cvYCIXfPcniuLma3bG_2EsentYL0HxUW7242NgmcDuoh5M-cVqk96Ndr-VL9dyJAqgbPMXHjX5KQwjHR_axBCm25qdMdfm8uxLy4q1ZMd7qPsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "article",
+			"item": [
+				{
+					"name": "Create Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwic3ViIjozLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTczNTg1MDcyMiwiZXhwIjoxNzM1ODU0MzIyfQ.j6yM6u4pvJZz7O5OgDMTGZILGop_EFE_ndpMIost-qYq25V_2ojuMyPRYblvH_-zCxLU3RbHo-lo51bWoctHEXQsRsdeoD6-HT6ziD5t5oTBR1e-volIFwsX9nXDXVHoHlfY4BM3e_DMvde0jfozb25EAJdnSmo8p74QMxX_qus-OxkgblC7d9aYHysxNi9lRbno4rrjNRjWKVjhYh0IOUPT5Zq9muGKQpO38Ud_GE-PqHdG48lrOqyikCKDvmlc4B5VWIck5f8OEmgIvZPKUp9SqZuAlxKpzyQjjlfJrByO-H16ES4oplg8ZzyXa5F91_Cs1XxJ5n1BoFkqCqkL7A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"my first title\",\n    \"post\": \"my first post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/articles",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODUwNTIwLCJleHAiOjE3MzU4NTQxMjB9.KCFW09ZAjBIo2Jgdg4MlkR5xUSvG_A0uYyk-fuGYQkbPgy113N3WIIZ2mSDm4dfW1XM5wrvmcsJikb1RMSGj2QUntqa0K8BYgHVKZynrMtvG4jqdYCtf2pe3BG1LOANlAg7CcqBSO1H5SCUVP-Pk2jZi7UPPVuqfpafLkvzrlBRqnSa62VTQlgjhR4hRFkfRMppl1FDzsInmOI96Pt3rcUfdT5WgyihLLVr7ACgS6AfQ6rHV6_zhdQq3idfLttc9z9SRkUH91gmO7htm2kOAheOMXVvZeCRBdXUO5DvU2wSBJ_AHSBBU6RDfkkGFvXk1KOcsMzI4VTOsl4klLAu3Sw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/articles",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Article By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwic3ViIjozLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTczNTg1MDc5NCwiZXhwIjoxNzM1ODU0Mzk0fQ.CUrT-hncYxGo-_a_C4ziA2ubnxkRhS4bda0gafgVLimTCrlrfcA_B1OGTHYIUe0vpqtwMI2kKbOW63HhobJpnUCiQ-gdHIlU0Bab9jpMui1L-q7kjJWtH8NDqMJkZjX7ffD6m4DJ6IkjWkvvXFjGtARbZf1_39jhTTbzFZAJC-MQOtS0lNhFOg6i4JvvmysnpmJk0NrkvSLQDw62dY_UphC5J-xlTMbZRL2c1XYv9Jf-2fZkmP6_D2JeE5o3i3w3J6klGEv_vgwsJbWJOIx-dlpkK6DFOWxuJoWcWuJCpPCbxdVnHmsmxfz5rHPbreh8bCxOCTtxAl7oONemLOOLjg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/articles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOjEsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1ODUwODk2LCJleHAiOjE3MzU4NTQ0OTZ9.qCPzca_ROfUErRPzT4ePz5bFMHZ2gzlGHz54GXdGmRArRJbL7kmumWwVzqONO1SRncjXcs7gw4Fwa1cEQgbE3zj4NHksneTRjnVXlCerYMjn3AhyXGfDUsxpgLZkDDFLgF25O2zvXI69-JH5ypbw6Nx8124pSr4o9X7RJVT9XSVTkW3hwisp51uex7ILj0AWZDHnARUp0ZLlcC7pCGOJKLs8lVmoDz_OTkUblTFRKzBfy2W8xJ3V6VXZUs0ph3yAwFx6cyKEixIYMnLuU8fVNVG3XQoVOJlUfP1UYyV8d5B6joqUnTbEr4nIYcN3-0YntggSSjFsfTDLFAbcnDUrVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"change the post title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/articles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwic3ViIjozLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTczNTg1MDk4NywiZXhwIjoxNzM1ODU0NTg3fQ.Zm1YZ1-XngASK-ZyH-SYAWfPIxFldiS-27e3WYOxlY06e-hYU4qypK7av2fAwGoKsMVfRfvB_ll4TcPzdvouy34BYrC1_8y4fiMc0FJgDtpHqJVPwMMKNYf4gyG8OZ254sZr_10ClRhVDYqRy5MokwWsb8H0umU3YiEeV8wttAmXkDN74UyqJSua1KBvNcfSXlYtJ4TunwHGn9kzpMJN0KEu6BcIebBqObsAEyewvx6wURx0F1Xe1oNPd9qczN_0zFi_BvjfL34ceA06DCXG13FW-IFGa5oAw_mi54fmWOAj_o5QL6adRmCWfv5EMN1__qZfG6urvKedj1mJcaFIoQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/articles/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
