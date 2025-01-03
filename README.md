@@ -31,9 +31,9 @@ This project is a weather application designed to provide real-time and forecast
 - **Rate Limiting**: Protects the API from abuse by restricting excessive requests.
 - **Error Handling**: Implements robust error handling for invalid requests and external API failures.
 - **IoC and DI**: Maintains Inversion of Control (IoC) and Dependency Injection (DI) principles for scalable and testable code.
-- **Background Jobs**: Periodically updates weather data for favorite locations in the background (Bonus Points).
-- **Authentication**: Protects user-specific endpoints through authentication (Bonus Points).
-- **Logging**: Implements a logging mechanism for better monitoring and debugging (Bonus Points).
+- **(Bonus Points) Background Jobs**: Periodically updates weather data for favorite locations in the background.
+- **(Bonus Points) Authentication**: Protects user-specific endpoints through authentication.
+- **(Bonus Points) Logging**: Implements a logging mechanism for better monitoring and debugging.
 - **Unit Testing**: Ensures code reliability and functionality with well-written unit tests.
 
 ---
