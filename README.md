@@ -6,8 +6,7 @@ This project is a weather application designed to provide real-time and forecast
 
 ### Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
+- [Key Features](#key-features)
 - [How This Project Meets the Evaluation Criteria](#how-this-project-meets-the-evaluation-criteria)
 - [Setup Instructions](#setup-instructions)
 - [API Documentation](#api-documentation)
@@ -65,7 +64,7 @@ This project has been designed and implemented with a strong focus on meeting th
 #### Implementation of Caching and Rate Limiting
 
 - Rate limiting has been implemented using NestJS middleware to prevent abuse and ensure reliability.
-- Caching strategies (if applicable) could be incorporated for enhanced performance (this can be extended as a future improvement).
+- Caching has been implemented using Redis as a core component of the system to enhance performance and reduce dependency on external APIs. The strategy includes both on-demand caching for user requests and scheduled updates for active user favorite locations.
 
 #### Security Considerations
 
@@ -160,8 +159,6 @@ You can run the app either locally or using Docker.
 
 ##### Local Setup
 
-Pre-requisite: A running PostgreSQL server.
-
 Commands to start the server:
 
 ```bash
@@ -243,7 +240,7 @@ For quick API testing, a Postman collection is available in the repository. Impo
 Path to the Postman collection:
 
 ```
-postman-collections/weather-app.postman_collection.json
+./postman-collections/weather-app.postman_collection.json
 ```
 
 To use:
@@ -299,7 +296,7 @@ With this strategy, the system balances performance, scalability, and data accur
 
 #### Design Decisions
 
-The architectural and technical design of this project was thoughtfully planned to ensure scalability, maintainability, and high performance. You can view the detailed design document here.
+The architectural and technical design of this project was thoughtfully planned to ensure scalability, maintainability, and high performance. You can view the detailed design document here https://drive.google.com/file/d/1_E6lDgkc0CaYqz1b5TUssXrFzAIs-7zb/view?usp=sharing.
 
 #### Assumptions
 
