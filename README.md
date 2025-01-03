@@ -72,7 +72,7 @@ This project has been designed and implemented with a strong focus on meeting th
 - Authentication is implemented to protect user-specific endpoints, ensuring that sensitive data is only accessible to authorized users.
 - Input validation and sanitization are applied to prevent common security vulnerabilities.
 
-#### Testing Approach
+#### Testing
 
 - Unit tests are written for core modules and services, ensuring reliability and correctness.
 - Mocks are used to test external API interactions without making real network calls.
