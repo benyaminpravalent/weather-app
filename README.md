@@ -14,7 +14,7 @@ This project is a weather application designed to provide real-time and forecast
 - [Assumptions and Design Decisions](#assumptions-and-design-decisions)
 - [Project Structure](#project-structure)
 - [Testing Approach](#testing-approach)
-- [Test](#test)
+- [Unit Test](#unit-test)
 
 ---
 
@@ -410,7 +410,7 @@ This approach ensures that the essential features and workflows are thoroughly t
 
 ---
 
-### Test
+### Unit Test
 
 Run the following command to execute the test suite:
 
